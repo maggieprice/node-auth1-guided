@@ -9,12 +9,8 @@ router.use('/users', usersRouter);
 
 
 router.get('/hash', (req, res) => {
-
-  const credentials = req.body;
-
-  const hash = bcrypt.hashSync(credentials.password, 14);
-
-credentials.password = hash;
+  const authentication = req.headers.authentication;
+  const hash = bcrypt.hashSync(authentication, 13);
   res.json({ originalValue: authentication , hashedValue: hash })
 })
 router.get('/', (req, res) => {
